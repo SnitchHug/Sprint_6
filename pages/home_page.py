@@ -39,7 +39,7 @@ class HomePageHeader(BasePage):
 
     @allure.step('Проверка отображения надписи - "Учебный проект"')
     def check_order_title(self):
-        return self.find_and_wait_locator(HomePageHeaderLocators.header_page_title).is_displayed()
+        return self.find_and_wait_for_locator_visibility(HomePageHeaderLocators.header_page_title).is_displayed()
 
 
 class HomePage(BasePage):

@@ -12,26 +12,32 @@ class BasePage:
         return self.driver.current_url
 
     # Ожидание отображения локатора
-    def find_and_wait_locator(self, locator):
+    def find_and_wait_for_locator_visibility(self, locator):
         return WebDriverWait(self.driver, 10).until(
             ec.visibility_of_element_located(locator)
             )
 
+    # Ожидание присутствия локатора на странице
+    def find_and_wait_for_locator_presence(self, locator):
+        return WebDriverWait(self.driver, 10).until(
+            ec.presence_of_element_located(locator)
+            )
+
     # Клик по кнопке
     def click_button(self, locator):
-        self.find_and_wait_locator(locator).click()
+        self.find_and_wait_for_locator_visibility(locator).click()
 
     # Заполнение формы
     def send_keys_to_field(self, locator, text):
-        self.find_and_wait_locator(locator).send_keys(text)
+        self.find_and_wait_for_locator_visibility(locator).send_keys(text)
 
     # Получить текст элемента
     def get_text_locator(self, locator):
-        return self.find_and_wait_locator(locator).text
+        return self.find_and_wait_for_locator_visibility(locator).text
 
     # Скролл к нужному элементу
     def scroll_to_locator(self, locator):
-        element = self.find_and_wait_locator(locator)
+        element = self.find_and_wait_for_locator_visibility(locator)
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
     # Переход на новую вкладку браузера
@@ -39,4 +45,4 @@ class BasePage:
         self.driver.switch_to.window(self.driver.window_handles[1])
 
     def check_element(self, locator):
-        return self.find_and_wait_locator(locator).is_displayed()
+        return self.find_and_wait_for_locator_visibility(locator).is_displayed()

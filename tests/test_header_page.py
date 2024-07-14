@@ -31,9 +31,9 @@ class TestMainPage:
         dzen_page = DzenPage(driver)
         header_page.yandex_logo_click()
         header_page.go_to_new_tab()
-        time.sleep(10)
+        dzen_page.check_element_main_button()
         current_url = header_page.get_current_url()
-        assert current_url == Urls.DZEN_URL and dzen_page.check_element_main_button()
+        assert current_url == Urls.DZEN_URL
 
     @allure.title('Тест проверки текста ответов на вопросы на главной странице веб-приложения')
     @allure.description('''1)Скроллим до блока с вопросами;

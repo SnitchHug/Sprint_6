@@ -89,4 +89,4 @@ class OrderPage(BasePage):
 
     @allure.step('Проверка отображения окна с текстом подтверждения заказа')
     def check_order_title(self):
-        return self.find_and_wait_locator(OrderPageLocators.order_placed_text).is_displayed()
+        return self.find_and_wait_for_locator_visibility(OrderPageLocators.order_placed_text)
